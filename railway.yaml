@@ -1,0 +1,6 @@
+build:
+  commands:
+    - npm install
+    - npm run build
+    - composer install --no-interaction --ignore-platform-reqs --no-scripts
+    - php artisan project:init
