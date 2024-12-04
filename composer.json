@@ -92,9 +92,6 @@
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade",
             "@php artisan themes:upgrade",
-            "@php artisan project:init",
-            "@npm install",
-            "@npm run build",
             "./vendor/bin/pint"
         ],
         "post-update-cmd": [
