@@ -87,9 +87,9 @@ class AdminPanelProvider extends PanelProvider
                 \Awcodes\FilamentQuickCreate\QuickCreatePlugin::make()
                     ->sortBy('navigation'),
 
-                \pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin::make()
-                    ->showBadge(env('APP_ENV_BADGE'))
-                    ->showBorder(env('APP_ENV_BADGE')),
+                // \pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin::make()
+                //     ->showBadge(env('APP_ENV_BADGE'))
+                //     ->showBorder(env('APP_ENV_BADGE')),
 
                 \ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin::make()
                     ->usingPage(HealthCheckResults::class),
