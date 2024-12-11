@@ -1,16 +1,18 @@
 <?php
 
-function requireRoutesRecursively($path)
-{
-    $files = glob($path.'/*.php');
-    foreach ($files as $file) {
-        require $file;
-    }
+if (!function_exists('requireRoutesRecursively')) {
+    function requireRoutesRecursively($path)
+    {
+        $files = glob($path.'/*.php');
+        foreach ($files as $file) {
+            require $file;
+        }
 
-    // Get all subdirectories
-    $directories = glob($path.'/*', GLOB_ONLYDIR);
-    foreach ($directories as $directory) {
-        requireRoutesRecursively($directory);
+        // Get all subdirectories
+        $directories = glob($path.'/*', GLOB_ONLYDIR);
+        foreach ($directories as $directory) {
+            requireRoutesRecursively($directory);
+        }
     }
 }
 

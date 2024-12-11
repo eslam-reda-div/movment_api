@@ -6,8 +6,13 @@ Broadcast::channel('company.{companyId}', function ($user, $companyId) {
     return $user->id == $companyId;
 });
 
-Broadcast::channel('bus-location.{busUuid}', function ($user, $busUuid) {
-    $bus = \App\Models\Bus::where('uuid', $busUuid)->first();
+Broadcast::channel('bus-location', function () {
+    return true;
+});
 
-    return $user->id === $bus?->company_id;
+Broadcast::channel('bus-location.{busUuid}', function ($user, $busUuid) {
+    // $bus = \App\Models\Bus::where('uuid', $busUuid)->first();
+
+    // // return $user->id === $bus?->company_id;
+    return true;
 });

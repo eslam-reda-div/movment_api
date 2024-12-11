@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthDriverController extends Controller
@@ -57,11 +59,13 @@ class AuthDriverController extends Controller
             return $this->sendError('Validation Error', $validator->errors()->toArray(), 422);
         }
 
-        if (! auth('driver')->attempt($request->only('phone_number', 'password'))) {
+        // Find the driver by phone number
+        $driver = Driver::with(['bus', 'company'])->where('phone_number', $request->phone_number)->first();
+
+        // Check if driver exists and password is correct
+        if (!$driver || !Hash::check($request->password, $driver->password)) {
             return $this->sendError('Invalid phone number or password', [], 401);
         }
-
-        $driver = auth('driver')->user();
 
         try {
             $token = $driver->createToken('auth_token')->plainTextToken;
@@ -69,7 +73,10 @@ class AuthDriverController extends Controller
             return $this->sendError('Could not create token', [], 500);
         }
 
-        return $this->sendResponse('Logged in successfully', ['token' => $token]);
+        return $this->sendResponse('Logged in successfully', [
+            'token' => $token,
+            'driver' => $driver,
+        ]);
     }
 
     /**
@@ -93,7 +100,7 @@ class AuthDriverController extends Controller
      */
     public function logout(Request $request)
     {
-        auth('driver')->user()->tokens()->delete();
+        $request->user()->currentAccessToken()->delete();
 
         return $this->sendResponse('Logged out successfully', null);
     }

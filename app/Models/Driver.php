@@ -98,7 +98,6 @@ class Driver extends Authenticatable implements FilamentUser, HasAvatar
     {
         return $this->trips()->where('status', TripStatus::IN_PROGRESS->value)
             ->whereDate('start_at_day', now())
-            ->whereTime('start_at_time', '<=', now()->format('H:i:s'))
             ->exists();
     }
 }

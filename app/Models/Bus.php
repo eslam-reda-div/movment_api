@@ -54,7 +54,6 @@ class Bus extends Model
         return $this->hasOne(Trip::class, 'driver_id', 'driver_id')
             ->where('status', TripStatus::IN_PROGRESS->value)
             ->whereDate('start_at_day', now())
-            ->whereTime('start_at_time', '<=', now()->format('H:i:s'))
             ->latest();
     }
 

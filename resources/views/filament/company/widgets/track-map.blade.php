@@ -97,7 +97,7 @@
                         // Choose icon based on whether bus has active trip
                         const icon = bus.active_trip ? busGreanIcon : busIcon;
 
-                        const marker = L.marker([bus.latitude, bus.longitude], {
+                        const marker = L.marker([bus?.latitude, bus.longitude], {
                             title: `${bus.number} : ${bus?.driver?.name ?? 'لا يوجد سائق'}`,
                             icon: icon
                         })
@@ -124,7 +124,7 @@
 
                     // Modify the Echo listener to maintain icon state
                     if (window.Echo) {
-                        window.Echo.private(`{{ env('BUS_UPDATE_BASE_CHANNEL') }}.${bus.uuid}`)
+                        window.Echo.channel(`{{ env('BUS_UPDATE_BASE_CHANNEL') }}.${bus.uuid}`)
                             .listen('BusLocationUpdated', (e) => {
                                 let marker = busMarkers.get(bus.uuid);
 

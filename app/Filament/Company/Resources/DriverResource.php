@@ -95,6 +95,7 @@ class DriverResource extends Resource
                         Forms\Components\TextInput::make('phone_number')
                             ->label(__('dashboard::dashboard.resource.com_driver.form.phone_number'))
                             ->required()
+                            ->unique(ignoreRecord: true)
                             ->prefixIcon('heroicon-o-phone')
                             ->columnSpan('full'),
                         Forms\Components\Select::make('bus_id')

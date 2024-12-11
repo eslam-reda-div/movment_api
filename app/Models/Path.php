@@ -61,4 +61,16 @@ class Path extends Model
     {
         return $this->hasMany(Trip::class);
     }
+
+    public function getStopsAttribute($value)
+    {
+        if (empty($value)) {
+            return [];
+        }
+
+        $stops = json_decode($value, true);
+        $destinationIds = array_column($stops, 'destination_id');
+        $destinations = Destination::whereIn('id', $destinationIds)->get();
+        return $destinations;
+    }
 }

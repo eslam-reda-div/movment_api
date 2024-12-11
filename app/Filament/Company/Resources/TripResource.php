@@ -128,7 +128,9 @@ class TripResource extends Resource
                             ->default(TripStatus::SCHEDULED->value)
                             ->searchable()
                             ->preload()
-                            ->native(false),
+                            ->native(false)
+                            ->hidden(fn (string $context): bool => $context === 'create')
+                            ->disabled(fn (string $context): bool => $context === 'create'),
                         Forms\Components\Textarea::make('notes')
                             ->label(__('dashboard::dashboard.resource.com_trip.form.notes'))
                             ->columnSpan('full'),

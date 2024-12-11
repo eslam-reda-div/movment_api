@@ -2,6 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
+use App\Filament\Admin\Resources\AdminResource\Pages\CreateAdmin;
+use App\Filament\Admin\Resources\AdminResource\Pages\EditAdmin;
+use App\Filament\Admin\Resources\AdminResource\Pages\ListAdmins;
 use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Models\Admin;
 use Filament\Forms;
@@ -212,9 +215,9 @@ class AdminResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAdmins::route('/'),
-            'create' => Pages\CreateAdmin::route('/create'),
-            'edit' => Pages\EditAdmin::route('/{record}/edit'),
+            'index' => ListAdmins::route('/'),
+            'create' => CreateAdmin::route('/create'),
+            'edit' => EditAdmin::route('/{record}/edit'),
         ];
     }
 }

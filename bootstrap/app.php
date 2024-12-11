@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withSchedule(function (Schedule $schedule) {
         $backupInterval = env('BACKUP_EVERY_HOURS', (24 * 7));
-        $schedule->command('db:export')->cron('0 */'.$backupInterval.' * * *');
+        $schedule->command('app:dbexport')->cron('0 */'.$backupInterval.' * * *');
         //        $schedule->command('auth:clear-resets')->everyThreeHours();
     })
     ->withExceptions(function (Exceptions $exceptions) {
