@@ -1,0 +1,18 @@
+@import "/vendor/filament/filament/resources/css/theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+@import '../../../../vendor/kenepa/banner/resources/css/index.css';
+
+@config 'tailwind.config.js';
+
+[x-cloak] {
+    display: none !important;
+}
+.grid-image .filepond--item {
+    width: calc(33.3% - 0.5em);
+}
+
+
+*
+{
+    font-family: 'Cairo', sans-serif !important;
+}
