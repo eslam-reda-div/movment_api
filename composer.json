@@ -58,10 +58,9 @@
         "shuvroroy/filament-spatie-laravel-health": "^2.1",
         "spatie/laravel-settings": "^3.4",
         "swisnl/filament-backgrounds": "^1.1",
-        "tomatophp/filament-notes": "^1.0",
-        "tomatophp/filament-pwa": "^1.0",
         "troccoli/blade-health-icons": "^4.0",
-        "z3d0x/filament-logger": "^0.7.0"
+        "z3d0x/filament-logger": "^0.7.0",
+        "barryvdh/laravel-debugbar": "^3.12"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",
