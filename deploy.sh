@@ -16,7 +16,7 @@ sudo git clean -fd
 sudo git pull origin main
 
 # تثبيت الاعتماديات
-printf "yes" | sudo composer install --no-dev --optimize-autoloader
+sudo composer install --no-dev --optimize-autoloader
 
 sudo cp .env.production .env
 
