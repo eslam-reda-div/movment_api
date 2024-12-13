@@ -34,6 +34,9 @@ class CompanyPanelProvider extends PanelProvider
             ->path('company')
             ->authGuard('company')
             ->spa(true)
+            ->spaUrlExceptions(fn (): array => [
+                url('/company'),
+            ])
             ->login()
             ->passwordReset()
             ->favicon('/favicon.ico')
