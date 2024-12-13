@@ -64,7 +64,7 @@
                 });
 
                 // Add tile layer
-                L.tileLayer('{{ env("TILES_TRACK_URL", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png") }}" }}',{
+                L.tileLayer('{{ env("TILES_TRACK_URL", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png") }}',{
                     useCache: true,
                     crossOrigin: true,
                 }).addTo(map);
