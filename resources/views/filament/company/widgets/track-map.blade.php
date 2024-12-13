@@ -125,8 +125,8 @@
 
                     // Modify the Echo listener to maintain icon state
                     if (window.Echo) {
-                        window.Echo.channel(`{{ env('BUS_UPDATE_BASE_CHANNEL') }}.${bus.uuid}`)
-                            .listen('BusLocationUpdated', (e) => {
+                        window.Echo.channel(`bus-location.${bus.uuid}`)
+                            .listen('.client-update-location', (e) => {
                                 let marker = busMarkers.get(bus.uuid);
 
                                 // Choose icon based on whether bus has active trip
