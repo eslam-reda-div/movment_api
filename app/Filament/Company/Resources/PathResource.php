@@ -137,8 +137,7 @@ class PathResource extends Resource
                                                             return [];
                                                         }
 
-                                                        return Destination::where('domain_id', $domainId)
-                                                            ->where('is_active', true)
+                                                        return Destination::where('is_active', true)
                                                             ->pluck('name', 'id');
                                                     })
                                                     ->required()

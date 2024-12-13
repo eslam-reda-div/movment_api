@@ -25,17 +25,26 @@ class ProjectInitialize extends Command
      */
     public function handle()
     {
-        $this->call('migrate:fresh', [
-            '--force' => true,
+        $this->info('Running migrations...');
+        $this->call('migrate', [
+            '--force' => true,  // Ensure migrations run without confirmation
+            '--no-interaction' => true,  // Skip all prompts
         ]);
+
+        // Generate shield permissions for the 'admin' panel without interaction
+        $this->info('Generating shield permissions for admin panel...');
         $this->call('shield:generate', [
-            '--all' => true,
+            '--panel' => 'admin',  // Automatically choose the 'admin' panel
+            '--all' => true,        // Generate for all entities
+            '--no-interaction' => true,  // Skip interaction
         ]);
 
-        $this->call('db:seed', [
-            '--force' => true,
+        // Clear cache and optimize
+        $this->info('Clearing cache and optimizing...');
+        $this->call('optimize:clear', [
+            '--no-interaction' => true,  // Skip interaction
         ]);
 
-        $this->call('optimize:clear');
+        $this->info('Project update completed.');
     }
 }

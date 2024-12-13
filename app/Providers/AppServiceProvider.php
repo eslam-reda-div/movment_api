@@ -64,7 +64,6 @@ class AppServiceProvider extends AuthServiceProvider
         // app()->setFallbackLocale('en');
 
         $this->registerPolicies();
-        $this->loadPolicies();
 
         Gate::policy(Activity::class, ActivityPolicy::class);
         Company::observe(CompanyObserver::class);
@@ -111,53 +110,5 @@ class AppServiceProvider extends AuthServiceProvider
 
             return null;
         });
-    }
-
-    /**
-     * Load all policies from the Policies directory
-     */
-    private function loadPolicies(): void
-    {
-        $policiesPath = app_path('Policies');
-
-        if (! File::isDirectory($policiesPath)) {
-            return;
-        }
-
-        $files = File::allFiles($policiesPath);
-
-        foreach ($files as $file) {
-            $policyClass = 'App\\Policies\\'.str_replace('.php', '', $file->getFilename());
-
-            if (! class_exists($policyClass)) {
-                continue;
-            }
-
-            $modelName = str_replace('Policy', '', $file->getFilename());
-            $modelClass = 'App\\Models\\'.str_replace('.php', '', $modelName);
-
-            if (class_exists($modelClass)) {
-                Gate::define($modelClass.'-*', function ($user, $ability) use ($policyClass) {
-                    // Company guard always has access
-                    if (auth()->guard('company')->check()) {
-                        return true;
-                    }
-
-                    // For admin guard, use the original policy
-                    $policy = new $policyClass;
-                    if (method_exists($policy, $ability)) {
-                        return $policy->$ability($user);
-                    }
-
-                    return false;
-                });
-                $this->policies[$modelClass] = $policyClass;
-            }
-        }
-
-        // Register the policies
-        foreach ($this->policies as $model => $policy) {
-            Gate::policy($model, $policy);
-        }
     }
 }
