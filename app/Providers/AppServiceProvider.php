@@ -82,7 +82,6 @@ class AppServiceProvider extends AuthServiceProvider
             //            HorizonCheck::new(),
             //            MeiliSearchCheck::new(),
             OptimizedAppCheck::new(),
-            PingCheck::new()->url(env('APP_URL')),
             QueueCheck::new(),
             //            RedisCheck::new(),
             //            RedisMemoryUsageCheck::new(),

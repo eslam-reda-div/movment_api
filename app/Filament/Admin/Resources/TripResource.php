@@ -108,8 +108,16 @@ class TripResource extends Resource
                             ->required()
                             ->relationship('driver', 'name')
                             ->columnSpan('full')
-                            ->options(function () {
-                                return Driver::where('company_id', auth('company')->id())
+                            ->options(function (callable $get) {
+                                $selectedCompanyId = $get('company_id');
+
+                                if ($selectedCompanyId) {
+                                    return Driver::where('company_id', $selectedCompanyId)
+                                        ->whereHas('bus')
+                                        ->pluck('name', 'id');
+                                }
+
+                                return Driver::whereDoesntHave('company')
                                     ->whereHas('bus')
                                     ->pluck('name', 'id');
                             })
@@ -121,8 +129,15 @@ class TripResource extends Resource
                             ->relationship('path', 'name')
                             ->columnSpan('full')
                             ->required()
-                            ->options(function () {
-                                return Path::where('company_id', auth('company')->id())
+                            ->options(function (callable $get) {
+                                $selectedCompanyId = $get('company_id');
+
+                                if ($selectedCompanyId) {
+                                    return Path::where('company_id', $selectedCompanyId)
+                                        ->pluck('name', 'id');
+                                }
+
+                                return Path::whereDoesntHave('company')
                                     ->pluck('name', 'id');
                             })
                             ->searchable()
