@@ -16,7 +16,7 @@ sudo git clean -fd
 sudo git pull origin main
 
 # تثبيت الاعتماديات
-sudo composer install
+# sudo composer install
 
 sudo composer dump-autoload -o
 
