@@ -39,4 +39,6 @@ sudo php artisan icon:cache
 sudo chmod -R 775 storage bootstrap/cache
 sudo chown -R www-data:www-data storage bootstrap/cache
 
+sudo supervisorctl restart laravel-reverb
+
 echo "Deployment completed successfully at $(date)"
