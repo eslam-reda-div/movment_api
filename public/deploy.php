@@ -9,5 +9,5 @@ if (!hash_equals($signature, $_SERVER['HTTP_X_HUB_SIGNATURE_256'] ?? '')) {
 }
 
 // تنفيذ سكربت التحديث بصلاحيات sudo
-shell_exec('sudo bash /var/www/html/movment_api/deploy.sh 2>&1');
+// shell_exec('sudo bash /var/www/html/movment_api/deploy.sh 2>&1');
 echo 'Deployed successfully!';

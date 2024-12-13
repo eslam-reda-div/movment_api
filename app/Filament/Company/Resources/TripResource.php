@@ -199,9 +199,8 @@ class TripResource extends Resource
                         }
 
                         return collect($stops)
-                            ->pluck('destination_id')
-                            ->map(function ($destinationId) {
-                                return \App\Models\Destination::find($destinationId)?->name ?? '';
+                            ->map(function ($stop) {
+                                return $stop['name'] ?? 'f';
                             })
                             ->filter();
                     }),
