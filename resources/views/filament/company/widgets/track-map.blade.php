@@ -66,6 +66,7 @@
                 // Add tile layer
                 L.tileLayer('{{ env("TILES_TRACK_URL", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png") }}',{
                     useCache: true,
+                    attribution: '© OpenStreetMap contributors',
                     crossOrigin: true,
                 }).addTo(map);
 
