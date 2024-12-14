@@ -106,6 +106,7 @@ class CustomDashboard extends Dashboard
                 ->button(),
         ];
 
-        return auth('admin')->user()->hasRole('super_admin') ? $actions : [];
+        // return auth('admin')->user()->hasRole('super_admin') ? $actions : [];
+        return [];
     }
 }
