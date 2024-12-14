@@ -76,8 +76,8 @@ return [
             ],
         ],
         'com_path' => [
-            'label' => 'المسار',
-            'plural_label' => 'المسارات',
+            'label' => 'خطوط الحركة',
+            'plural_label' => 'خطوط الحركةات',
             'navigation' => [
                 'group' => '',
             ],
@@ -91,16 +91,16 @@ return [
                 ],
             ],
             'form' => [
-                'name' => 'الاسم',
+                'name' => 'اسم خط الحركة',
                 'domain' => 'النطاق',
                 'path' => [
-                    'label' => 'تفاصيل المسار',
+                    'label' => 'تفاصيل خطوط الحركة',
                     'from' => 'من',
                     'to' => 'إلى',
                     'stops' => [
                         'label' => 'المحطات',
                         'add' => 'إضافة محطة',
-                        'destination' => 'الوجهة',
+                        'destination' => 'المدون والمراكز داخل محافظات',
                     ],
                 ],
                 'notes' => 'ملاحظات',
@@ -115,14 +115,14 @@ return [
                 'created_at' => 'تاريخ الإنشاء',
             ],
             'actions' => [
-                'edit' => 'تعديل المسار',
-                'delete' => 'حذف المسار',
+                'edit' => 'تعديل خطوط الحركة',
+                'delete' => 'حذف خطوط الحركة',
                 'bulk_delete' => 'حذف المحدد',
                 'create' => 'إنشاء مسار',
             ],
         ],
         'com_trip' => [
-            'label' => 'الرحلة',
+            'label' => 'تفاصيل الرحلة',
             'plural_label' => 'الرحلات',
             'status' => [
                 'scheduled' => 'مجدولة',
@@ -134,17 +134,17 @@ return [
             ],
             'messages' => [
                 'search' => [
-                    'path_name' => 'اسم المسار',
+                    'path_name' => 'اسم خطوط الحركة',
                     'driver_name' => 'اسم السائق',
-                    'trip_date' => 'تاريخ الرحلة',
-                    'trip_time' => 'وقت الرحلة',
+                    'trip_date' => 'تاريخ تفاصيل الرحلة',
+                    'trip_time' => 'وقت تفاصيل الرحلة',
                 ],
             ],
             'form' => [
                 'start_at_day' => 'تاريخ البداية',
                 'start_at_time' => 'وقت البداية',
                 'driver' => 'السائق',
-                'path' => 'المسار',
+                'path' => 'خطوط الحركة',
                 'status' => 'الحالة',
                 'notes' => 'ملاحظات',
                 'time_picker' => [
@@ -175,8 +175,8 @@ return [
                 'created_at' => 'تاريخ الإنشاء',
             ],
             'actions' => [
-                'edit' => 'تعديل الرحلة',
-                'delete' => 'حذف الرحلة',
+                'edit' => 'تعديل تفاصيل الرحلة',
+                'delete' => 'حذف تفاصيل الرحلة',
                 'bulk_delete' => 'حذف المحدد',
                 'create' => 'إنشاء رحلة',
             ],
@@ -224,7 +224,7 @@ return [
         ],
         'com_bus' => [
             'label' => 'حافلة',
-            'plural_label' => 'الحافلات',
+            'plural_label' => 'الاتوبيسات',
             'navigation' => [
                 'group' => '',
             ],
@@ -271,7 +271,7 @@ return [
         ],
         'bus' => [
             'label' => 'حافلة',
-            'plural_label' => 'الحافلات',
+            'plural_label' => 'الاتوبيسات',
             'navigation' => [
                 'group' => 'الموارد',
                 'icon' => 'ionicon-bus-outline',
@@ -338,7 +338,7 @@ return [
                 'email' => 'البريد الإلكتروني',
                 'phone_number' => 'رقم الهاتف',
                 'address' => 'العنوان',
-                'bus_limit' => 'حد الحافلات',
+                'bus_limit' => 'حد الاتوبيسات',
                 'notes' => 'ملاحظات',
                 'password' => 'كلمة المرور',
                 'password_confirmation' => 'تأكيد كلمة المرور',
@@ -348,11 +348,11 @@ return [
                 'name' => 'الاسم',
                 'avatar' => 'الصورة الشخصية',
                 'email' => 'البريد الإلكتروني',
-                'bus_limit' => 'حد الحافلات',
+                'bus_limit' => 'حد الاتوبيسات',
                 'drivers_count' => 'عدد السائقين',
-                'buses_count' => 'عدد الحافلات',
+                'buses_count' => 'عدد الاتوبيسات',
                 'trips_count' => 'عدد الرحلات',
-                'paths_count' => 'عدد المسارات',
+                'paths_count' => 'عدد خطوط الحركةات',
                 'phone_number' => 'رقم الهاتف',
                 'address' => 'العنوان',
                 'created_at' => 'تاريخ الإنشاء',
@@ -363,11 +363,11 @@ return [
                     'email' => 'البريد الإلكتروني',
                     'phone_number' => 'رقم الهاتف',
                     'address' => 'العنوان',
-                    'bus_limit' => 'حد الحافلات',
-                    'bus_count' => 'عدد الحافلات',
+                    'bus_limit' => 'حد الاتوبيسات',
+                    'bus_count' => 'عدد الاتوبيسات',
                     'driver_count' => 'عدد السائقين',
                     'trip_count' => 'عدد الرحلات',
-                    'path_count' => 'عدد المسارات',
+                    'path_count' => 'عدد خطوط الحركةات',
                 ],
             ],
             'actions' => [
@@ -406,9 +406,9 @@ return [
                 'search' => [
                     'name' => 'الاسم',
                     'domain' => 'النطاق',
-                    'path_count' => 'عدد المسارات',
-                    'paths_from_count' => 'عدد المسارات من',
-                    'paths_to_count' => 'عدد المسارات إلى',
+                    'path_count' => 'عدد خطوط الحركةات',
+                    'paths_from_count' => 'عدد خطوط الحركةات من',
+                    'paths_to_count' => 'عدد خطوط الحركةات إلى',
                 ],
             ],
             'actions' => [
@@ -420,7 +420,7 @@ return [
         ],
         'domain' => [
             'label' => 'نطاق',
-            'plural_label' => 'النطاقات',
+            'plural_label' => 'المحافظات',
             'navigation' => [
                 'group' => 'الموارد',
                 'icon' => 'entypo-location',
@@ -445,7 +445,7 @@ return [
                 'search' => [
                     'name' => 'الاسم',
                     'destinations' => 'الوجهات',
-                    'paths' => 'المسارات',
+                    'paths' => 'خطوط الحركةات',
                 ],
             ],
             'actions' => [
@@ -501,23 +501,23 @@ return [
             ],
         ],
         'path' => [
-            'label' => 'المسار',
-            'plural_label' => 'المسارات',
+            'label' => 'خطوط الحركة',
+            'plural_label' => 'خطوط الحركةات',
             'navigation' => [
                 'group' => '',
                 'icon' => 'bx-trip',
             ],
             'form' => [
-                'name' => 'الاسم',
+                'name' => 'اسم خط الحركة',
                 'domain' => 'النطاق',
                 'path' => [
-                    'label' => 'المسار',
+                    'label' => 'خطوط الحركة',
                     'from' => 'من',
                     'to' => 'إلى',
                     'stops' => [
                         'label' => 'المحطات',
                         'add' => 'إضافة محطة',
-                        'destination' => 'الوجهة',
+                        'destination' => 'المدون والمراكز داخل محافظات',
                     ],
                 ],
                 'notes' => 'ملاحظات',
@@ -562,7 +562,7 @@ return [
                     'cancel' => 'إلغاء',
                 ],
                 'driver' => 'السائق',
-                'path' => 'المسار',
+                'path' => 'خطوط الحركة',
                 'status' => 'الحالة',
                 'status_options' => [
                     'scheduled' => 'مجدولة',
@@ -589,10 +589,10 @@ return [
             ],
             'messages' => [
                 'search' => [
-                    'path_name' => 'اسم المسار',
+                    'path_name' => 'اسم خطوط الحركة',
                     'driver_name' => 'اسم السائق',
-                    'trip_date' => 'تاريخ الرحلة',
-                    'trip_time' => 'وقت الرحلة',
+                    'trip_date' => 'تاريخ تفاصيل الرحلة',
+                    'trip_time' => 'وقت تفاصيل الرحلة',
                 ],
             ],
             'actions' => [
@@ -740,7 +740,7 @@ return [
             'info_window' => [
                 'bus' => 'الحافلة',
                 'status' => 'الحالة',
-                'trip_info' => 'معلومات الرحلة',
+                'trip_info' => 'معلومات تفاصيل الرحلة',
                 'bus_info' => 'معلومات الحافلة',
                 'driver_info' => 'معلومات السائق',
                 'status' => [
