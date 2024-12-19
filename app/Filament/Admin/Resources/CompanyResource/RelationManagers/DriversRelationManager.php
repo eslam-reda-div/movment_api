@@ -1,70 +1,37 @@
 <?php
 
-namespace App\Filament\Admin\Resources;
+namespace App\Filament\Admin\Resources\CompanyResource\RelationManagers;
 
-use App\Filament\Admin\Resources\DriverResource\Pages;
-use App\Models\Bus;
-use App\Models\Company;
-use App\Models\Driver;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Support\Enums\ActionSize;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
+use App\Models\Driver;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Support\Enums\ActionSize;
+use App\Models\Bus;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash as FacadesHash;
+use Illuminate\Support\Facades\Hash;
 
-class DriverResource extends Resource
+
+class DriversRelationManager extends RelationManager
 {
-    protected static ?string $model = Driver::class;
+    protected static string $relationship = 'drivers';
 
-    protected static ?string $navigationIcon = 'healthicons-o-construction-worker';
-
-    protected static ?string $recordTitleAttribute = 'name';
-
-    public static function getModelLabel(): string
-    {
-        return __('dashboard::dashboard.resource.driver.label');
-    }
-
-    public static function getPluralModelLabel(): string
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
     {
         return __('dashboard::dashboard.resource.driver.plural_label');
     }
 
-    public static function getNavigationGroup(): ?string
+    protected function getTableHeading(): string | Htmlable
     {
-        return __('dashboard::dashboard.resource.driver.navigation.group');
+        return __('dashboard::dashboard.resource.driver.plural_label');
     }
 
-    public static function getGloballySearchableAttributes(): array
-    {
-        return [
-            'name',
-            'phone_number',
-            'home_address',
-        ];
-    }
-
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        return [
-            __('dashboard::dashboard.resource.driver.messages.search.name') => $record?->name,
-            __('dashboard::dashboard.resource.driver.messages.search.phone_number') => $record?->phone_number,
-            __('dashboard::dashboard.resource.driver.messages.search.home_address') => $record?->home_address,
-            __('dashboard::dashboard.resource.driver.messages.search.company') => $record?->company?->name,
-            __('dashboard::dashboard.resource.driver.messages.search.bus') => $record?->bus?->number,
-        ];
-    }
-
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -98,34 +65,6 @@ class DriverResource extends Resource
                             ->prefixIcon('heroicon-o-phone')
                             ->columnSpan('full'),
 
-                        Forms\Components\Select::make('company')
-                            ->label(__('dashboard::dashboard.resource.driver.form.company'))
-                            ->columnSpan('full')
-                            ->relationship(titleAttribute: 'name')
-                            ->searchable()
-                            ->preload()
-                            ->native(false)
-                            ->live(),
-
-                        Forms\Components\Select::make('bus_id')
-                            ->label(__('dashboard::dashboard.resource.driver.form.bus'))
-                            ->columnSpan('full')
-                            ->relationship('bus', 'number')
-                            ->options(function (callable $get) {
-                                $companyId = $get('company');
-
-                                if (! $companyId) {
-                                    return Bus::whereNull('driver_id')->whereNull('company_id')->pluck('number', 'id');
-                                }
-
-                                return Bus::whereNull('driver_id')
-                                    ->where('company_id', $companyId)
-                                    ->pluck('number', 'id');
-                            })
-                            ->searchable()
-                            ->preload()
-                            ->native(false),
-
                         Forms\Components\Textarea::make('notes')
                             ->label(__('dashboard::dashboard.resource.driver.form.notes'))
                             ->columnSpan('full'),
@@ -135,7 +74,7 @@ class DriverResource extends Resource
                             ->password()
                             ->confirmed()
                             ->columnSpan(1)
-                            ->dehydrateStateUsing(fn ($state) => FacadesHash::make($state))
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $context): bool => $context === 'create'),
 
@@ -148,9 +87,10 @@ class DriverResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label(__('dashboard::dashboard.resource.driver.table.id'))
@@ -170,12 +110,6 @@ class DriverResource extends Resource
                     ->toggleable()
                     ->defaultImageUrl(url('https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028?d=mp&r=g&s=250'))
                     ->circular(),
-
-                Tables\Columns\TextColumn::make('company.name')
-                    ->label(__('dashboard::dashboard.resource.driver.table.company'))
-                    ->toggleable()
-                    ->searchable()
-                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('bus.number')
                     ->label(__('dashboard::dashboard.resource.driver.table.bus_number'))
@@ -204,10 +138,12 @@ class DriverResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                SelectFilter::make('company_id')
-                    ->label(__('dashboard::dashboard.resource.driver.table.company'))
-                    ->native(false)
-                    ->options(fn (): array => Company::get()->pluck('name', 'id')->toArray()),
+                //
+            ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make()
+                    ->label(__('dashboard::dashboard.resource.driver.actions.create')),
+                \pxlrbt\FilamentExcel\Actions\Tables\ExportAction::make(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -236,29 +172,6 @@ class DriverResource extends Resource
                     Tables\Actions\DeleteBulkAction::make()
                         ->label(__('dashboard::dashboard.resource.driver.actions.bulk_delete')),
                 ]),
-            ])
-            ->headerActions([
-                \pxlrbt\FilamentExcel\Actions\Tables\ExportAction::make(),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make()
-                    ->label(__('dashboard::dashboard.resource.driver.actions.create')),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListDrivers::route('/'),
-            'create' => Pages\CreateDriver::route('/create'),
-            'edit' => Pages\EditDriver::route('/{record}/edit'),
-        ];
     }
 }

@@ -4,6 +4,8 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\CompanyResource\Pages;
 use App\Models\Company;
+use App\Filament\Admin\Resources\CompanyResource\RelationManagers\DriversRelationManager;
+use App\Filament\Admin\Resources\CompanyResource\RelationManagers\BusesRelationManager;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -240,7 +242,8 @@ class CompanyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DriversRelationManager::class,
+            BusesRelationManager::class,
         ];
     }
 
