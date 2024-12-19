@@ -16,7 +16,8 @@ sudo git clean -fd
 sudo git pull origin main
 
 # تثبيت الاعتماديات
-sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction
+# sudo COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction
+# sudo COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload -o
 sudo COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload -o
 
 sudo cp .env.production .env
