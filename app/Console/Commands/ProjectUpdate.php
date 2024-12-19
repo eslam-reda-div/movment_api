@@ -34,7 +34,7 @@ class ProjectUpdate extends Command
         // Generate shield permissions for the 'admin' panel without interaction
         $this->info('Generating shield permissions for admin panel...');
         $this->call('shield:generate', [
-            '--panel' => 'admin',  // Automatically choose the 'admin' panel
+            // '--panel' => 'admin',  // Automatically choose the 'admin' panel
             '--all' => true,        // Generate for all entities
             '--no-interaction' => true,  // Skip interaction
         ]);

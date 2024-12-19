@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\Admin;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ActivityPolicy
 {
