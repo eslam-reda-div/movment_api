@@ -77,7 +77,7 @@ return [
         ],
         'com_path' => [
             'label' => 'خطوط الحركة',
-            'plural_label' => 'خطوط الحركةات',
+            'plural_label' => 'خطوط الحركة',
             'navigation' => [
                 'group' => '',
             ],
@@ -352,7 +352,7 @@ return [
                 'drivers_count' => 'عدد السائقين',
                 'buses_count' => 'عدد الاتوبيسات',
                 'trips_count' => 'عدد الرحلات',
-                'paths_count' => 'عدد خطوط الحركةات',
+                'paths_count' => 'عدد خطوط الحركة',
                 'phone_number' => 'رقم الهاتف',
                 'address' => 'العنوان',
                 'created_at' => 'تاريخ الإنشاء',
@@ -367,7 +367,7 @@ return [
                     'bus_count' => 'عدد الاتوبيسات',
                     'driver_count' => 'عدد السائقين',
                     'trip_count' => 'عدد الرحلات',
-                    'path_count' => 'عدد خطوط الحركةات',
+                    'path_count' => 'عدد خطوط الحركة',
                 ],
             ],
             'actions' => [
@@ -406,9 +406,9 @@ return [
                 'search' => [
                     'name' => 'الاسم',
                     'domain' => 'النطاق',
-                    'path_count' => 'عدد خطوط الحركةات',
-                    'paths_from_count' => 'عدد خطوط الحركةات من',
-                    'paths_to_count' => 'عدد خطوط الحركةات إلى',
+                    'path_count' => 'عدد خطوط الحركة',
+                    'paths_from_count' => 'عدد خطوط الحركة من',
+                    'paths_to_count' => 'عدد خطوط الحركة إلى',
                 ],
             ],
             'actions' => [
@@ -445,7 +445,7 @@ return [
                 'search' => [
                     'name' => 'الاسم',
                     'destinations' => 'الوجهات',
-                    'paths' => 'خطوط الحركةات',
+                    'paths' => 'خطوط الحركة',
                 ],
             ],
             'actions' => [
@@ -502,7 +502,7 @@ return [
         ],
         'path' => [
             'label' => 'خطوط الحركة',
-            'plural_label' => 'خطوط الحركةات',
+            'plural_label' => 'خطوط الحركة',
             'navigation' => [
                 'group' => '',
                 'icon' => 'bx-trip',

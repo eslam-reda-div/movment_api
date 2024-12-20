@@ -23,6 +23,8 @@ class BusResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'number';
 
+    protected static ?int $navigationSort = 5;
+
     public static function getModelLabel(): string
     {
         return __('dashboard::dashboard.resource.bus.label');

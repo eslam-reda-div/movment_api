@@ -26,6 +26,8 @@ class TripResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'path.name';
 
+    protected static ?int $navigationSort = 7;
+
     public static function getModelLabel(): string
     {
         return __('dashboard::dashboard.resource.com_trip.label');

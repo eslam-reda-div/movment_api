@@ -24,6 +24,8 @@ class DriverResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?int $navigationSort = 4;
+
     public static function getModelLabel(): string
     {
         return __('dashboard::dashboard.resource.driver.label');
